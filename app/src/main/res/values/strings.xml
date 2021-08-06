@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">WatchList</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="genreStatic">Genre(s):</string>
+    <string name="loremBlock">Lorem ipsum dolor sit amet, sed errem conceptam ex, ut probatus ocurreret mel, dicam definitionem ea mei. Numquam reformidans eam no, mei autem liberavisse mediocritatem eu. Ut sea natum impedit efficiantur, usu debet legimus in. Mei ut tollit commodo detracto. Sed labore dolorum id, te possit dolores eam.
+</string>
+    <string name="posterContentDesc">Movie Poster</string>
 </resources>

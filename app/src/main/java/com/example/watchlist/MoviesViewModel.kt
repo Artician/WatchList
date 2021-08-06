@@ -1,34 +1,41 @@
 package com.example.watchlist
 
-import androidx.lifecycle.LiveData
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class MoviesViewModel : ViewModel() {
-
-    private val status = MutableLiveData<String>()
+    // Livedata handlers
+    private val rawStatus = MutableLiveData<String>()
     private val rawMovies = MutableLiveData<MovieListReply>()
     private val rawConfigInfo = MutableLiveData<ConfigReply>()
-
-    val movies: LiveData<MovieListReply> = rawMovies
-    val configInfo: LiveData<ConfigReply> = rawConfigInfo
 
     init{
         getMovies()
     }
 
+    fun getMovieList(): MutableLiveData<MovieListReply>{
+        return rawMovies
+    }
+
+    fun getConfig(): MutableLiveData<ConfigReply>{
+        return rawConfigInfo
+    }
 
     private fun getMovies(){
+        // Asynchronous tasks
         viewModelScope.launch {
             try {
+                // Logging data to ensure objects are populated
                 rawMovies.value = TmdbApi.retrofitService.getMovies()
+                Log.i("getMovies", "${rawMovies.value!!.results[0].title} retrieved")
                 rawConfigInfo.value = TmdbApi.retrofitService.getConfig()
-                status.value = "Data from source gathered"
+                Log.i("getConfig", "${rawConfigInfo.value!!.images.imgBaseUrl} as Base IMG URL retrieved")
+                rawStatus.value = "Data from source gathered"
             } catch (e: Exception){
-                status.value = "Failure: ${e.message}"
+                rawStatus.value = "Failure: ${e.message}"
             }
         }
     }

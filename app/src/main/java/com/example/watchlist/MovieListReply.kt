@@ -3,6 +3,7 @@ package com.example.watchlist
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+// This was the easy part. I had no issue parsing the JSON objects with Retrofit and Moshi
 @JsonClass(generateAdapter = true)
 data class MovieListReply(
     val page: Int,
