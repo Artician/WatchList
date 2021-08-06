@@ -56,7 +56,7 @@ class MovieListAdapter(private val movieList: List<Movie>?, private val listener
         holder.releaseDate.text = moviesArray?.get(position)?.releaseDate
         holder.genreText.text = getGenreString(moviesArray?.get(position)?.genreIds)
 
-        // I'm aware this is less than ideal, but I'm trying to get the app completed.
+        // I'm aware this is less than ideal, but I'm trying to get the app completed
         holder.itemView.setOnClickListener{listener(movieList!![position])}
     }
 
